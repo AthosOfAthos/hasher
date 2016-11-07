@@ -1,11 +1,15 @@
 import hashlib, socket
+guess = "cat"
+
+def get():
+	client = socket.socket()
+	client.connect((host,port))
+	print("Conected to server")
+	client.send(str("get").encode())
+	return client.recv(1024).decode()
+
 print ("Starting hasher client")
-hasher = hashlib.new('md4')
-client = socket.socket()
 host = socket.gethostname()
-port = int(input("Enter Port: "))
-client.connect((host, port))
-print("Connected to hasher server")
-client.send("test".encode())
-client.close()
-print("Connection closed")
+port = int(input("Enter port: "))
+print (get())
+

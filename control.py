@@ -5,6 +5,11 @@ port = input("Enter port: ")
 loop = True
 while loop:
 	command = input("Enter a command: ")
-	control.connect((host, port))
+	control = socket.socket()
+	control.connect((host, int(port)))
 	if command == "exit":
-		control.send()
+		control.send(str("exit").encode())
+		loop = False
+	else:
+		control.send(command.encode())
+	control.close()
