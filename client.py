@@ -1,0 +1,11 @@
+import hashlib, socket
+print ("Starting hasher client")
+hasher = hashlib.new('md4')
+client = socket.socket()
+host = socket.gethostname()
+port = int(input("Enter Port: "))
+client.connect((host, port))
+print("Connected to hasher server")
+client.send("test".encode())
+client.close()
+print("Connection closed")
