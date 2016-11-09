@@ -3,8 +3,14 @@ hash = "1c3ea6f2b8cf5653460ddf549a52ff4b"
 print("Starting hasher server")
 server = socket.socket()
 host = socket.gethostbyname(socket.gethostname())
-port = int(input("Enter port: "))
-server.bind((host, port))
+binding = True
+while binding:
+	try:
+		port = int(input("Enter port: "))
+		server.bind((host, port))
+		binding = False
+	except:
+		print("Binding failed, please try a different port")
 print("Server bound to: ", host, ":", port)
 print("---------------------------------------")
 server.listen(5)
@@ -18,6 +24,9 @@ while listen:
 	elif command == "get":
 		connection.send(hash.encode())
 		print("Sent hash to: ", addr)
+	elif command == "order":
+		connection.send("0".encode)
+		print("Sending order")
 	else:
 		print("Client found solution: " + command)
 		listen = False

@@ -1,5 +1,5 @@
 import hashlib, socket
-guess = ["a","b","c","give up","r","fdafd","dafesa","es","cat","dontry",]
+guess = ["test","cat"]
 
 def get():
 	client = socket.socket()
@@ -16,6 +16,17 @@ def send(solution):
 	print("Connected to server")
 	client.send(solution.encode())
 	client.close()
+
+def getOrder():
+	print("Fetching orders")
+	client = socket.socket()
+	client.connect((host,port))
+	print("Connected to server")
+	client.send("order".encode())
+	client.close()
+
+def generate(start):
+	
 
 def solve(hashguess):
 	hasher = hashlib.new('md4')
